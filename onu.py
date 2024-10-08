@@ -62,9 +62,9 @@ class ONU(object):
                 #print("next_grant timeout {}".format(next_grant))
                 yield self.env.timeout(next_grant)  #wait for the next grant
             except Exception as e:
-                print self.env.now
+                print(self.env.now)
                 print( "{} - tempo negativo".format(self.oid))
-                print grant['start']
+                print(grant['start'])
                 print("next_grant timeout {}".format(next_grant))
                 pass
             print(" {} -grant start at {}".format(self.oid,self.env.now))

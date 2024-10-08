@@ -10,25 +10,25 @@ from traffic_gen import PacketGenerator, Packet
 from bbu import BBU
 from bbupool import BBUPool
 
-#criar env
+#Create env
 random.seed(50)
 env = simpy.Environment()
 bbu_store = simpy.Store(env)
-#criar ODN
+#Create ODN
 odn = ODN(env)
-#criar wavelengths
+#Create wavelengths
 wavelengths = []
 for i in range(100):
     wavelengths.append(i)
 
 for w in wavelengths:
     odn.create_wavelength(w)
-#criar ONU
+#Create ONU
 ONUs = []
 for i in range(3):
     ONUs.append(ONU(i,env,wavelengths,100,odn))
 
-#criar PacketGenerator
+#Create PacketGenerator
 
 pkt_gen = []
 for i in range(3):
@@ -44,7 +44,7 @@ bbu1 = BBU(env,0,proc_buffer,3)
 BBUPool1.BBU_list.append(bbu1)
 #####
 
-#criar OLT
+#Create OLT
 dba = {'name':"Nakayama_DWBA"}
 olt = OLT(env,0,odn,ONUs,wavelengths,dba,BBUPool1)
 odn.set_ONUs(ONUs)

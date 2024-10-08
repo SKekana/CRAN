@@ -63,6 +63,6 @@ class ODN(object):
     def DownStream(self,wavelength):
         while True:
             msg = yield self.wavelengths[wavelength]['downstream'].get()
-            print self.env.now
+            print(self.env.now)
             print("{} - down".format(msg['onu']))
             self.env.process(self.splitter_down(msg))

@@ -23,7 +23,7 @@ class BBU(object):
 			yield self.env.process(self.Proc(pkt))
 
 	def Proc(self,pkt):
-		#print "PKT sendo processado"
+#print "pkt being processed"
 		if pkt.split != self.split:
 			pkt.split = self.split
 			
@@ -36,6 +36,6 @@ class BBU(object):
 			# fix proc timeout
 			self.env.timeout(self.proc_timeout)
 		else:
-			#print "SPLITS iguais, segue o jogo"
+#print "equal splits, follows the game"
 			yield self.env.timeout(0)
 		self.postProc_buffer.put(pkt)

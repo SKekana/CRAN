@@ -14,7 +14,7 @@ class DBA(object):
 
 
 class Nakayama_DWBA(DBA):
-    #problema: ultrapassa limite de delay se o tamanho do slot ou delay prop for grande
+#Problem: It exceeds delay if the size of the slot or delay prop is large
     def __init__(self,env,monitoring,grant_store,wavelengths,ONUs):
         DBA.__init__(self,env,monitoring,grant_store)
         self.ONUs = ONUs
@@ -40,9 +40,9 @@ class Nakayama_DWBA(DBA):
             self.alloc_list = sorted(self.alloc_list, key=lambda x: x['onu'].distance, reverse=True)
 
             self.granting_start = self.env.now + (self.alloc_list[0]['onu'].distance/self.lightspeed)
-            print self.env.now
-            print "------------------------------------------"
-            print self.granting_start
+            print(self.env.now)
+            print("------------------------------------------")
+            print(self.granting_start)
             self.time_limit = self.env.now + self.delay_limit
             print("time_limit = {}".format(self.time_limit))
 
@@ -53,7 +53,7 @@ class Nakayama_DWBA(DBA):
 
             self.num_slots = math.floor((self.time_limit - self.granting_start)/float(slot_time))
             if self.num_slots < 1:
-                print "NUM SLOTS leq 1"
+                print("NUM SLOTS leq 1")
             print("num_slots={}".format(self.num_slots))
             w = 0
             self.active_wavelenghts.append(self.wavelengths[w])
@@ -76,9 +76,9 @@ class Nakayama_DWBA(DBA):
                         slot = 1
                         start = self.granting_start
                     except Exception as e:
-                        print w
+                        print(w)
                         print("ERROR {}".format(e))
-                        print self.env.now
+                        print(self.env.now)
                         sys.exit(0)
 
             self.monitoring.fronthaul_active_wavelengths(len(self.active_wavelenghts))
@@ -128,9 +128,9 @@ class M_DWBA(DBA):
             self.alloc_list = sorted(self.alloc_list, key=lambda x: x['onu'].distance, reverse=True)
 
             self.granting_start = self.env.now + (self.alloc_list[0]['onu'].distance/self.lightspeed)
-            print self.env.now
-            print "------------------------------------------"
-            print self.granting_start
+            print(self.env.now)
+            print("------------------------------------------")
+            print(self.granting_start)
             self.time_limit = self.env.now + self.delay_limit
             print("time_limit = {}".format(self.time_limit))
 
@@ -141,7 +141,7 @@ class M_DWBA(DBA):
 
             self.num_slots = math.floor((self.time_limit - self.granting_start)/float(slot_time))
             if self.num_slots < 1:
-                print "NUM SLOTS leq 1"
+                print("NUM SLOTS leq 1")
             print("num_slots={}".format(self.num_slots))
             w = 0
             self.active_wavelenghts.append(self.wavelengths[w])
@@ -164,9 +164,9 @@ class M_DWBA(DBA):
                             slot = 1
                             start = self.granting_start
                         except Exception as e:
-                            print w
+                            print(w)
                             print("ERROR {}".format(e))
-                            print self.env.now
+                            print(self.env.now)
                             sys.exit(0)
                 Gate.append(gate)
 
